@@ -9,6 +9,7 @@ import cors  from 'cors'
 import { app, server } from './lib/socket.js'
 import path from 'path'
 
+console.log("app", app);
 
 //const cors = require('cors');
 
@@ -36,12 +37,12 @@ app.use(express.json());
 app.use(cookieParser())
 
 
-console.log('auth route loaded');
 app.use('/api/auth', authRoutes);
+console.log('auth:', authRoutes);
 
 console.log('message routes loaded');
 app.use('/api/message', messageRoutes)
-console.log('message ...');
+console.log('message', messageRoutes);
 
 // console.log("🔍 Registered routes:");
 // app._router.stack.forEach(layer => {
@@ -63,12 +64,12 @@ if(process.env.NODE_ENV === 'production'){
     });
 }
 
-console.log("Registered routes:");
-app._router.stack.forEach(layer => {
-  if (layer.route) {
-    console.log(layer.route.path);
-  }
-});
+// console.log("Registered routes:");
+// app._router.stack.forEach(layer => {
+//   if (layer.route) {
+//     console.log(layer.route.path);
+//   }
+// });
 
 server.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`); 

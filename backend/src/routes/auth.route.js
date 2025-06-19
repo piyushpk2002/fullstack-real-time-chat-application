@@ -5,7 +5,7 @@ const router = Router();
 
 router.post('/signup', signup)
 router.post('/login', login)
-router.put('/logout', logout)
+router.post('/logout', logout)
 
 router.post('/updateProfile', protectRoute, updateProfile)
 router.get('/check-auth', protectRoute, checkAuth)
