@@ -62,6 +62,14 @@ if(process.env.NODE_ENV === 'production'){
         res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
     });
 }
+
+console.log("Registered routes:");
+app._router.stack.forEach(layer => {
+  if (layer.route) {
+    console.log(layer.route.path);
+  }
+});
+
 server.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`); 
     connectDB();
