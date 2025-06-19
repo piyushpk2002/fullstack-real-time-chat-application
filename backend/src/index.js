@@ -43,14 +43,14 @@ console.log('message routes loaded');
 app.use('/api/message', messageRoutes)
 console.log('message ...');
 
-console.log("🔍 Registered routes:");
-app._router.stack.forEach(layer => {
-  if (layer.route) {
-    console.log("✅", layer.route.path);
-  } else if (layer.name === 'router' && layer.regexp) {
-    console.log("📦 Router:", layer.regexp);
-  }
-});
+// console.log("🔍 Registered routes:");
+// app._router.stack.forEach(layer => {
+//   if (layer.route) {
+//     console.log("✅", layer.route.path);
+//   } else if (layer.name === 'router' && layer.regexp) {
+//     console.log("📦 Router:", layer.regexp);
+//   }
+// });
 
 
 
