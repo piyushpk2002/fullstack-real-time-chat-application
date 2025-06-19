@@ -38,11 +38,11 @@ app.use(cookieParser())
 
 
 app.use('/api/auth', authRoutes);
-console.log('auth:', authRoutes);
+//console.log('auth:', authRoutes);
 
 console.log('message routes loaded');
 app.use('/api/message', messageRoutes)
-console.log('message', messageRoutes);
+//console.log('message', messageRoutes);
 
 // console.log("🔍 Registered routes:");
 // app._router.stack.forEach(layer => {
@@ -56,12 +56,12 @@ console.log('message', messageRoutes);
 
 
 //This is to load the static assets from dist folder in prod. (dist folder contains minified production ready code for deployment)
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-    app.get('*', (req, res) =>{
-        res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
-    });
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
 }
 
 // console.log("Registered routes:");
