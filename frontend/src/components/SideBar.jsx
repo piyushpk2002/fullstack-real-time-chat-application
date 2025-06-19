@@ -56,7 +56,7 @@ const SideBar = () => {
 
       <div className="overflow-y-auto w-full py-3">
         
-        {(fileterdUsers?.map((user) => (
+        {Array.isArray(fileterdUsers) ? fileterdUsers.map((user) => (
           <button
             key={user._id}
             onClick={() => setSelectedUser(user)}
@@ -88,7 +88,7 @@ const SideBar = () => {
               </div>
             </div>
           </button>
-        )))}
+        )) : ""}
 
         
       </div>

@@ -3,7 +3,7 @@ import { axiosInstance } from '../lib/axios'
 import toast from 'react-hot-toast';
 import { io } from 'socket.io-client'
 
-const BASE_URL = import.meta.env.mode === 'devlopment' ? "http://localhost:5001/": "/"
+const BASE_URL =  import.meta.env.MODE ==="development" ? "http://localhost:5001/": "/" 
 
 export const useAuthStore = create((set, get)=>({
 
@@ -18,11 +18,15 @@ export const useAuthStore = create((set, get)=>({
     socket: null,
 
     checkAuth: async () => {
+        console.log("checkAuth running", import.meta.env.mode);
+        
         try {
             
             const res = await axiosInstance.get('/auth/check-auth');
             set ({authUser: res.data})
             get().connectSocket();
+            console.log("here");
+            
         } catch (error) {
             console.log("Error in checkin auth", error);
             set({authUser: null});
@@ -73,8 +77,9 @@ export const useAuthStore = create((set, get)=>({
     },
 
     logout: async () => {
+        console.log("m: ",import.meta.env.mode)
         try {
-            const res = await axiosInstance.put('/auth/logout');
+            const res = await axiosInstance.post('/auth/logout');
 
             if(res){
                 toast.success('Logged out successfully');
@@ -82,6 +87,8 @@ export const useAuthStore = create((set, get)=>({
             }
             get().disconnectSocket();
         } catch (error) {
+            console.log(error);
+            
             toast.error(error.response.data.message);         
         }
     },
@@ -113,11 +120,13 @@ export const useAuthStore = create((set, get)=>({
                 userId: authUser._id, 
             }
         });
+        
+        
          socket.connect(); // on calling socket.connect() and on successfull connection this emits a 'connected' event itself
         set({socket: socket});
 
         socket.on('getOnlineUsers', (userIds) =>{
-            console.log(userIds);
+            console.log("id: " ,userIds);
             
             set({onlineUsers: userIds});
         })

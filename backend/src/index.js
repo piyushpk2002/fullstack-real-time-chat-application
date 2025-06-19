@@ -9,7 +9,7 @@ import cors  from 'cors'
 import { app, server } from './lib/socket.js'
 import path from 'path'
 
-console.log("app", app);
+//console.log("app", app);
 
 //const cors = require('cors');
 
@@ -44,32 +44,25 @@ console.log('message routes loaded');
 app.use('/api/message', messageRoutes)
 //console.log('message', messageRoutes);
 
-// console.log("🔍 Registered routes:");
-// app._router.stack.forEach(layer => {
-//   if (layer.route) {
-//     console.log("✅", layer.route.path);
-//   } else if (layer.name === 'router' && layer.regexp) {
-//     console.log("📦 Router:", layer.regexp);
-//   }
-// });
 
-
+console.log("here1");
 
 //This is to load the static assets from dist folder in prod. (dist folder contains minified production ready code for deployment)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
+  console.log("here2");
+  
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
+  console.log("here3");
+  
 }
 
-// console.log("Registered routes:");
-// app._router.stack.forEach(layer => {
-//   if (layer.route) {
-//     console.log(layer.route.path);
-//   }
-// });
+console.log("here4");
+
+
+
 
 server.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`); 
