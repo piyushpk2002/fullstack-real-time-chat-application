@@ -24,7 +24,7 @@ const io = new Server(server, {
 
 //stores online users
 //returns recivers socket id form socketmap to check if the user is online or not
-export function getReceiverSocketId (userId) =>{
+export function getReceiverSocketId (userId){
     return userSocketMap[userId];
 }
 const userSocketMap = {}; // {userId: socketId}
