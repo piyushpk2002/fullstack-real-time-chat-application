@@ -43,6 +43,16 @@ console.log('message routes loaded');
 app.use('/api/message', messageRoutes)
 console.log('message ...');
 
+console.log("🔍 Registered routes:");
+app._router.stack.forEach(layer => {
+  if (layer.route) {
+    console.log("✅", layer.route.path);
+  } else if (layer.name === 'router' && layer.regexp) {
+    console.log("📦 Router:", layer.regexp);
+  }
+});
+
+
 
 //This is to load the static assets from dist folder in prod. (dist folder contains minified production ready code for deployment)
 if(process.env.NODE_ENV === 'production'){
