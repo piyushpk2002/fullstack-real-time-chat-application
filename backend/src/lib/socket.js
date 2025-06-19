@@ -23,12 +23,12 @@ const io = new Server(server, {
 });
 
 //stores online users
-const userSocketMap = {}; // {userId: socketId}
-
 //returns recivers socket id form socketmap to check if the user is online or not
-const getReceiverSocketId = (userId) =>{
+export function getReceiverSocketId (userId) =>{
     return userSocketMap[userId];
 }
+const userSocketMap = {}; // {userId: socketId}
+
 
 io.on('connection', (socket) =>{
     console.log('A user connected', socket.id);
@@ -45,4 +45,4 @@ io.on('connection', (socket) =>{
     })
 })
 
-export {io, app, server, getReceiverSocketId}
+export {io, app, server}
