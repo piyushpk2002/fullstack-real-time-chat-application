@@ -36,11 +36,11 @@ app.use(express.json());
 app.use(cookieParser())
 
 
-app.use('/api/auth', authRoutes);
 console.log('auth route loaded');
+app.use('/api/auth', authRoutes);
 
-app.use('/api/message', messageRoutes)
 console.log('message routes loaded');
+app.use('/api/message', messageRoutes)
 
 
 //This is to load the static assets from dist folder in prod. (dist folder contains minified production ready code for deployment)
